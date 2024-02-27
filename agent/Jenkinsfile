@@ -3,29 +3,37 @@ pipeline {
     
     stages {
         stage('Build') {
-           sh 'sleep 10'
+            steps {
+                sh 'sleep 10'
             }
         }
     
         stage('Build1') {
-            sh '''
+            steps {
+                sh '''
                 #!/bin/bash
                 ls -lrt
                 sleep 10
             '''
+            }
         }
         stage('Test') {
-            sh '''
+            steps {
+                sh '''
                 #!/bin/bash
                 ls -lrt
                 sleep 10
             '''
+            }
         }
         stage('Test1') {
-            sh '''
+            steps {
+                sh '''
                 #!/bin/bash
                 ls -lrt
                 sleep 10
             '''
+            }
         }
+        
 }

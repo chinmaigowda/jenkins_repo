@@ -11,29 +11,29 @@ pipeline {
         stage('Build1') {
             steps {
                 sh '''
-                #!/bin/bash
-                ls -lrt
-                sleep 10
-            '''
+                    #!/bin/bash
+                    ls -lrt
+                    sleep 10
+                '''
             }
         }
         stage('Test') {
             steps {
                 sh '''
-                #!/bin/bash
-                ls -lrt
-                sleep 10
-            '''
+                    #!/bin/bash
+                    ls -lrt
+                    sleep 10
+                '''
             }
         }
         stage('Test1') {
             steps {
                 sh '''
-                #!/bin/bash
-                ls -lrt
-                sleep 10
-            '''
+                    #!/bin/bash
+                    ls -lrt
+                    sleep 10
+                '''
             }
         }
-        
+    }    
 }

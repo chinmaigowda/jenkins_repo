@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build') {
+           sh 'sleep 10'
+            }
+        }
+    
+        stage('Build1') {
+            sh '''
+                #!/bin/bash
+                ls -lrt
+                sleep 10
+            '''
+        }
+        stage('Test') {
+            sh '''
+                #!/bin/bash
+                ls -lrt
+                sleep 10
+            '''
+        }
+        stage('Test1') {
+            sh '''
+                #!/bin/bash
+                ls -lrt
+                sleep 10
+            '''
+        }
+}

@@ -1,4 +1,5 @@
 pipeline {
+    set +x
     agent {
         label 'slave1'
     }
@@ -15,7 +16,6 @@ pipeline {
         }
     
         stage('Build1') {
-            set +x
             environment {
                 LOCAL = "This is a local variable"
             }

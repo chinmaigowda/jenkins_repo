@@ -2,6 +2,10 @@ pipeline {
     agent {
         label 'slave1'
     }
+    parameters {
+        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
+        string(name: 'PARAM_STRING', defaultValue: 'input_param', description: 'This is a string parameter')
+    }
     environment {
         GLOBAL = 'This is a global variable'
     }
@@ -11,6 +15,7 @@ pipeline {
                 sh '''
                     set +x
                     echo "$GLOBAL"
+                    echo "${PARAM_STRING}"
                 '''
             }
         }

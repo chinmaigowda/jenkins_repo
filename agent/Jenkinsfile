@@ -15,10 +15,10 @@ pipeline {
         }
     
         stage('Build1') {
-            steps {
-                environment {
+            environment {
                 LOCAL = "This is a local variable"
                 }
+            steps {
                 sh '''
                     #!/bin/bash
                     ls -lrt

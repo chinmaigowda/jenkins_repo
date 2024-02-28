@@ -1,5 +1,4 @@
 pipeline {
-    set +x
     agent {
         label 'slave1'
     }

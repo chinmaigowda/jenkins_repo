@@ -9,6 +9,9 @@ pipeline {
     environment {
         GLOBAL = 'This is a global variable'
     }
+    triggers {
+        cron('*/59 * * * *')
+    }
     stages {
         stage('Build') {
             steps {

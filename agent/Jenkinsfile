@@ -2,11 +2,15 @@ pipeline {
     agent {
         label 'slave1'
     }
-    
+    environment {
+        GLOBAL = 'This is a global variable'
+    }
     stages {
         stage('Build') {
             steps {
-                sh 'sleep 10'
+                sh '''
+                    echo "$GLOBAL"
+                '''
             }
         }
     

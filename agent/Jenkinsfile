@@ -28,7 +28,7 @@ pipeline {
                 LOCAL = "This is a local variable"
                 }
             steps {
-                catcherror(buildResult: 'SUCCESS', stageResult; 'FAILURE') {
+                catcherror(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     sh '''
                         #!/bin/bash
                         ls -lrt

@@ -3,7 +3,10 @@ pipeline {
         label 'slave1'
     }
     parameters {
-        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
+        booleanParam(name: 'CHECKOUT', defaultValue: true, description: 'Toggle this value')
+        booleanParam(name: 'BUILD', defaultValue: true, description: 'Toggle this value')
+        booleanParam(name: 'TEST', defaultValue: true, description: 'Toggle this value')
+        booleanParam(name: 'DEPLOY', defaultValue: true, description: 'Toggle this value')
         string(name: 'PARAM_STRING', defaultValue: 'input_param', description: 'This is a string parameter')
     }
     environment {
@@ -13,7 +16,27 @@ pipeline {
         cron('*/59 * * * *')
     }
     stages {
-        stage('Build') {
+        stage ('CHECKOUT') {
+            when {
+                expression {
+                    params.CHECKOUT == true
+                }
+            }
+            steps {
+                script {
+                    checkout([$class: 'GitSCM', 
+                    branches: [[name: '*/master']],
+                    userRemoteConfigs: [[url: 'https://github.com/chinmaigowda/mvn1.git',
+                    credentialsId: 'GitHub']]])
+                }
+            }
+        }
+        stage('BUILD') {
+            when {
+                expression {
+                    params.BUILD == true
+                }
+            }
             steps {
                 sh '''
                     set +x
@@ -22,24 +45,12 @@ pipeline {
                 '''
             }
         }
-    
-        stage('Build1') {
-            environment {
-                LOCAL = "This is a local variable"
-                }
-            steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh '''
-                        #!/bin/bash
-                        ls -lrt
-                        sleep 10
-                        echo "$LOCAL"
-                        exit 1
-                    '''
+        stage('TEST') {
+            when {
+                expression {
+                    params.TEST == true
                 }
             }
-        }
-        stage('Test') {
             steps {
                 sh '''
                     #!/bin/bash
@@ -49,7 +60,12 @@ pipeline {
                 '''
             }
         }
-        stage('Test1') {
+        stage('DEPLOY') {
+            when {
+                expression {
+                    params.DEPLOY == true
+                }
+            }
             steps {
                 sh '''
                     #!/bin/bash

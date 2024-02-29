@@ -10,7 +10,7 @@ pipeline {
                     checkout([$class: 'GitSCM', 
                     branches: [[name: '*/master']],
                     userRemoteConfigs: [[url: 'https://github.com/chinmaigowda/mvn1.git',
-                    credentialsId: 'jenkins']]])
+                    credentialsId: 'GitHub']]])
                 }
             }
         }

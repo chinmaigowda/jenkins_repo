@@ -3,10 +3,10 @@ pipeline {
         label 'slave1'
     }
     parameters {
-        booleanParam(name: 'CHECKOUT', defaultValue: true, description: 'Toggle this value')
-        booleanParam(name: 'BUILD', defaultValue: true, description: 'Toggle this value')
-        booleanParam(name: 'TEST', defaultValue: true, description: 'Toggle this value')
-        booleanParam(name: 'DEPLOY', defaultValue: true, description: 'Toggle this value')
+        booleanParam(name: 'CHECKOUT', defaultValue: true, description: 'Toggle this value to checkout')
+        booleanParam(name: 'BUILD', defaultValue: true, description: 'Toggle this value to build')
+        booleanParam(name: 'TEST', defaultValue: true, description: 'Toggle this value to test')
+        booleanParam(name: 'DEPLOY', defaultValue: true, description: 'Toggle this value to deploy')
         string(name: 'PARAM_STRING', defaultValue: 'input_param', description: 'This is a string parameter')
     }
     environment {

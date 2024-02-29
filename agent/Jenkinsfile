@@ -17,7 +17,7 @@ pipeline {
             steps {
                 sh '''
                     set +x
-                    echo "$GLOBAL"
+                    echo "${GLOBAL}"
                     echo "${PARAM_STRING}"
                 '''
             }
@@ -33,6 +33,7 @@ pipeline {
                     ls -lrt
                     sleep 10
                     echo "$LOCAL"
+                    exit 1
                 '''
             }
         }

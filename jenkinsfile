@@ -17,6 +17,8 @@ pipeline {
         stage ('Build') {
             steps {
                 sh '''
+                    sudo apt install -y maven
+                    mvn clean install
                     ls -lrt
                     sleep 5
                 '''

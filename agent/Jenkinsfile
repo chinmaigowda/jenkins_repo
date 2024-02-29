@@ -17,7 +17,7 @@ pipeline {
             steps {
                 sh '''
                     set +x
-                    echo "${GLOBAL}"
+                    echo "$GLOBAL"
                     echo "${PARAM_STRING}"
                 '''
             }
@@ -37,7 +37,7 @@ pipeline {
                         exit 1
                     '''
                 }
-            
+            }
         }
         stage('Test') {
             steps {

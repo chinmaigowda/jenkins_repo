@@ -33,7 +33,7 @@ pipeline {
                     ls -lrt
                     sleep 10
                     echo "$LOCAL"
-                    exit 1
+                    exit 0
                 '''
             }
         }

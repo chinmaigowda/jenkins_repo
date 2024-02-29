@@ -28,13 +28,15 @@ pipeline {
                 LOCAL = "This is a local variable"
                 }
             steps {
-                sh '''
-                    #!/bin/bash
-                    ls -lrt
-                    sleep 10
-                    echo "$LOCAL"
-                    exit 0
-                '''
+                catcherror(buildResult: 'SUCCESS', stageResult; 'FAILURE') {
+                    sh '''
+                        #!/bin/bash
+                        ls -lrt
+                        sleep 10
+                        echo "$LOCAL"
+                        exit 1
+                    '''
+                }
             }
         }
         stage('Test') {

@@ -4,10 +4,19 @@ pipeline {
     }
 
     stages {
+        stage ('Checkout') {
+            steps {
+                script {
+                    checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+                    userRemoteConfigs: [[url: 'https://github.com/chinmaigowda/mvn1.git',
+                    credentialsId: 'ubuntu']]])
+                }
+            }
+        }
         stage ('Build') {
             steps {
                 sh '''
-                    echo "Hello world"
+                    ls -lrt
                     sleep 5
                 '''
             }

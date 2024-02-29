@@ -10,7 +10,7 @@ pipeline {
                     checkout([$class: 'GitSCM', 
                     branches: [[name: '*/master']],
                     userRemoteConfigs: [[url: 'https://github.com/chinmaigowda/mavendemo.git',
-                    credentialsId: 'e573b12d-5472-45ac-89d3-4eed37dd7573']]])
+                    credentialsId: 'GitHub']]])
                 }
             }
         }

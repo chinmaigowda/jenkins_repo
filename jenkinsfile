@@ -7,9 +7,10 @@ pipeline {
         stage ('Checkout') {
             steps {
                 script {
-                    checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+                    checkout([$class: 'GitSCM', 
+                    branches: [[name: '*/master']],
                     userRemoteConfigs: [[url: 'https://github.com/chinmaigowda/mvn1.git',
-                    credentialsId: 'ubuntu']]])
+                    credentialsId: 'jenkins']]])
                 }
             }
         }

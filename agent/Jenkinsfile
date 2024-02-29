@@ -16,7 +16,7 @@ pipeline {
         cron('*/59 * * * *')
     }
     stages {
-        stage ('CHECKOUT') {
+        stage('CHECKOUT') {
             when {
                 expression {
                     params.CHECKOUT == true

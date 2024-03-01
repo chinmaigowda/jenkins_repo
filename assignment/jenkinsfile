@@ -21,8 +21,6 @@ pipeline {
                 }
             }
         }
-    }
-    stages{
         stage('BUILD') {
             when {
                 expression {
@@ -34,8 +32,6 @@ pipeline {
                 ls -lrt
             }
         }
-    }
-    stages{
         stage('TEST') {
             when {
                 expression {

@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'slave1'
-    }
+    agent any
     parameters {
         booleanParam(name: 'CHECKOUT', defaultValue: true, description: 'Toggle this value to checkout')
         booleanParam(name: 'BUILD', defaultValue: true, description: 'Toggle this value to build')

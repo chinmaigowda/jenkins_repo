@@ -28,7 +28,7 @@ pipeline {
                 }
             }
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                     sh '''
                         sleep 5
                         ls -lrt

@@ -28,16 +28,17 @@ pipeline {
                 }
             }
             steps {
-                catchError(buildResult: 'FAILURE', stageResult: 'SUCCESS') {
-                    sh '''
-                        sleep 5
-                        ls -lrt
-                        exit 1
-                    '''
-                }
+                sh '''
+                    sleep 5
+                    ls -lrt
+                    exit 1
+                '''
             }
         }
         stage('TEST') {
+            dependencies {
+                build('BUILD')
+            }
             when {
                 expression {
                     params.CHECKOUT == true

@@ -28,8 +28,10 @@ pipeline {
                 }
             }
             steps {
-                sleep 5
-                ls -lrt
+                sh '''
+                    sleep 5
+                    ls -lrt
+                '''
             }
         }
         stage('TEST') {
@@ -39,8 +41,10 @@ pipeline {
                 }
             }
             steps {
-                sleep 5
-                ls -lrt
+                sh '''
+                    sleep 5
+                    ls -lrt
+                '''
             }
         }
     }

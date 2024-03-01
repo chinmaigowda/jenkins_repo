@@ -10,9 +10,6 @@ pipeline {
     environment {
         GLOBAL = 'This is a global variable'
     }
-    triggers {
-        cron('* */23 * * *')
-    }
     stages {
         stage('CHECKOUT') {
             when {

@@ -26,7 +26,6 @@ pipeline {
         stage('BUILD') {
             when {
                 expression {
-                    params.CHECKOUT == true
                     params.BUILD == true
                 }
             }
@@ -41,8 +40,6 @@ pipeline {
             when {
                 expression {
                     params.CHECKOUT == true
-                    params.BUILD == true
-                    params.TEST == true
                 }
             }
             steps {

@@ -28,11 +28,13 @@ pipeline {
                 }
             }
             steps {
-                sh '''
-                    sleep 5
-                    ls -lrt
-                    exit 1
-                '''
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh '''
+                        sleep 5
+                        ls -lrt
+                        exit 1
+                    '''
+                }
             }
         }
         stage('TEST') {

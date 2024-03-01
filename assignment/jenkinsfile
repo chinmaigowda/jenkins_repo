@@ -39,7 +39,6 @@ pipeline {
             when {
                 expression {
                     params.CHECKOUT == true
-                    params.BUILD == true
                 }
             }
             steps {

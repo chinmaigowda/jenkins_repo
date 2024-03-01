@@ -1,0 +1,54 @@
+pipeline {
+    agent any
+    parameters {
+    booleanParam(name: 'CHECKOUT', defaultValue: true, description: 'Toggle this to checkout')
+    booleanParam(name: 'BUILD', defaultValue: true, description: 'Toggle this to checkout')
+    booleanParam(name: 'TEST', defaultValue: true, description: 'Toggle this to checkout')
+    }
+    stages{
+        stage('CHECKOUT') {
+            when {
+                expression {
+                    params.CHECKOUT == true
+                }
+            }
+            steps {
+                script {
+                    checkout([$class: 'GitSCM', 
+                    branches: [[name: '*/master']],
+                    userRemoteConfigs: [[url: 'https://github.com/chinmaigowda/mvn1.git',
+                    credentialsId: 'GitHub']]])        
+                }
+            }
+        }
+    }
+    stages{
+        stage('BUILD') {
+            when {
+                expression {
+                    params.CHECKOUT == true
+                    params.BUILD == true
+                }
+            }
+            steps {
+                sleep 5
+                ls -lrt
+            }
+        }
+    }
+    stages{
+        stage('TEST') {
+            when {
+                expression {
+                    params.CHECKOUT == true
+                    params.BUILD == true
+                    params.TEST == true
+                }
+            }
+            steps {
+                sleep 5
+                ls -lrt
+            }
+        }
+    }
+}

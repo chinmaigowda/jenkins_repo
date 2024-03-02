@@ -45,13 +45,14 @@ pipeline {
                 sh '''
                     sleep 5
                     ls -lrt
+                    exit 1
                 '''
             }
         }
         stage('DEPLOY') {
             when {
                 expression {
-                    params.DEPLOY
+                    params.TEST == true
                 }
             }
             steps {

@@ -47,5 +47,13 @@ pipeline {
                 '''
             }
         }
+        stage('DEPLOY') {
+            steps {
+                    sh '''
+                    sleep 5
+                    ls -lrt
+                '''
+            }
+        }
     }
 }

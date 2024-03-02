@@ -42,18 +42,14 @@ pipeline {
                 }
             }
             steps {
-                sheb '''
+                sh '''
                     sleep 5
                     ls -lrt
                 '''
             }
         }
         stage('DEPLOY') {
-            when {
-                expression {
-                    params.TEST == false
-                }
-            }
+            dependsOn 'TEST'
             steps {
                     sh '''
                     sleep 5

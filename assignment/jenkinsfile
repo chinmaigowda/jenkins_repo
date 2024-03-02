@@ -28,8 +28,6 @@ pipeline {
                 }
             }
             steps {
-                script {
-                    def buildResult =
                     sh '''
                         sleep 5
                         exit 1

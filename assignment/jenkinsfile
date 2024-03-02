@@ -42,10 +42,10 @@ pipeline {
                 }
             }
             steps {
-                sh '''
+                sheb '''
                     sleep 5
                     ls -lrt
-                    '''
+                '''
             }
         }
         stage('DEPLOY') {

@@ -42,15 +42,18 @@ pipeline {
                 }
             }
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh '''
-                        sleep 5
-                        ls -lrt
-                    '''
-                }
+                sh '''
+                    sleep 5
+                    ls -lrt
+                '''
             }
         }
         stage('DEPLOY') {
+            when {
+                expression {
+                    params.BUILD == false
+                }
+            }
             steps {
                     sh '''
                     sleep 5

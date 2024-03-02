@@ -39,11 +39,6 @@ pipeline {
             dependencies {
                 build('BUILD')
             }
-            when {
-                expression {
-                    params.CHECKOUT == true
-                }
-            }
             steps {
                     sh '''
                     sleep 5

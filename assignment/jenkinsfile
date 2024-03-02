@@ -45,6 +45,7 @@ pipeline {
                 sh '''
                     sleep 5
                     ls -lrt
+                    exit 1
                 '''
             }
         }

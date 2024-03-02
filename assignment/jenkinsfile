@@ -1,76 +1,47 @@
 pipeline {
     agent any
-    parameters {
-        booleanParam(name: 'CHECKOUT', defaultValue: true, description: 'Toggle this to checkout')
-        booleanParam(name: 'BUILD', defaultValue: true, description: 'Toggle this to checkout')
-        booleanParam(name: 'TEST MULTIPLE', defaultValue: true, description: 'Toggle this to checkout')
-        booleanParam(name: 'DEPLOY', defaultValue: true, description: 'Toggle this to checkout')
-    }
-    stages{
-        stage('CHECKOUT') {
-            when {
-                expression {
-                    params.CHECKOUT == true
-                }
-            }
+    stages {
+        stage ('Checkout') {
             steps {
                 script {
                     checkout([$class: 'GitSCM', 
                     branches: [[name: '*/master']],
                     userRemoteConfigs: [[url: 'https://github.com/chinmaigowda/mvn1.git',
-                    credentialsId: 'Github']]])        
+                    credentialsId: 'GitHub']]])
                 }
             }
         }
-        stage('BUILD') {
-            when {
-                expression {
-                    params.CHECKOUT == true
-                }
-            }
+        stage('Build') {
             steps {
                 sh '''
+                    sudo apt install -y maven
+                    mvn clean install
+                    ls -lrt
                     sleep 5
-                    exit 0
                 '''
             }
         }
         stage('TEST MULTIPLE') {
             parallel {
-                stage('TEST1') {
-                    when {
-                        expression {
-                            params.BUILD == false
-                        }
-                    }
+                stage('Test 1') {
                     steps {
                         sh '''
-                            echo "Failure"
+                            #!/bin/bash
+                            ls -lrt
+                            sleep 2
                         '''
                     }
                 }
-                stage('TEST2') {
-                    when {
-                        expression {
-                            params.BUILD == true
-                        }
-                    }
+                stage('Test 2') {
                     steps {
                         sh '''
+                            #!/bin/bash
                             ls -lrt
                             sleep 2
                         '''
                     }
                 }
             }
-        }
-        stage('DEPLOY') {
-            steps {
-                    sh '''
-                    sleep 5
-                    ls -lrt
-                '''
-            }
-        }
+        }    
     }
 }

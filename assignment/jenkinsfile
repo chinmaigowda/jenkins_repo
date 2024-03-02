@@ -1,16 +1,12 @@
 pipeline {
     agent any
     parameters {
-        booleanParam(name: 'CHECKOUT', defaultValue: true, description: 'Toggle this value to checkout')
-        booleanParam(name: 'BUILD', defaultValue: true, description: 'Toggle this value to build')
-        booleanParam(name: 'TEST', defaultValue: true, description: 'Toggle this value to test')
-        booleanParam(name: 'DEPLOY', defaultValue: true, description: 'Toggle this value to deploy')
-        string(name: 'PARAM_STRING', defaultValue: 'input_param', description: 'This is a string parameter')
+        booleanParam(name: 'CHECKOUT', defaultValue: true, description: 'Toggle this to checkout')
+        booleanParam(name: 'BUILD', defaultValue: true, description: 'Toggle this to checkout')
+        booleanParam(name: 'TEST MULTIPLE', defaultValue: true, description: 'Toggle this to checkout')
+        booleanParam(name: 'DEPLOY', defaultValue: true, description: 'Toggle this to checkout')
     }
-    environment {
-        GLOBAL = 'This is a global variable'
-    }
-    stages {
+    stages{
         stage('CHECKOUT') {
             when {
                 expression {
@@ -22,52 +18,59 @@ pipeline {
                     checkout([$class: 'GitSCM', 
                     branches: [[name: '*/master']],
                     userRemoteConfigs: [[url: 'https://github.com/chinmaigowda/mvn1.git',
-                    credentialsId: 'GitHub']]])
+                    credentialsId: 'Github']]])        
                 }
             }
         }
         stage('BUILD') {
             when {
                 expression {
-                    params.BUILD == true
+                    params.CHECKOUT == true
                 }
             }
             steps {
                 sh '''
-                    set +x
-                    echo "$GLOBAL"
-                    echo "${PARAM_STRING}"
+                    sleep 5
+                    exit 0
                 '''
             }
         }
-        stage('TEST') {
-            when {
-                expression {
-                    params.TEST == true
+        stage('TEST MULTIPLE') {
+            parallel {
+                stage('TEST1') {
+                    when {
+                        expression {
+                            params.BUILD == false
+                        }
+                    }
+                    steps {
+                        sh '''
+                            echo "Failure"
+                        '''
+                    }
                 }
-            }
-            steps {
-                sh '''
-                    #!/bin/bash
-                    ls -lrt
-                    sleep 10
-                    echo "$LOCAL"
-                '''
+                stage('TEST2') {
+                    when {
+                        expression {
+                            params.BUILD == true
+                        }
+                    }
+                    steps {
+                        sh '''
+                            ls -lrt
+                            sleep 2
+                        '''
+                    }
+                }
             }
         }
         stage('DEPLOY') {
-            when {
-                expression {
-                    params.DEPLOY == true
-                }
-            }
             steps {
-                sh '''
-                    #!/bin/bash
+                    sh '''
+                    sleep 5
                     ls -lrt
-                    sleep 10
                 '''
             }
         }
-    }    
+    }
 }

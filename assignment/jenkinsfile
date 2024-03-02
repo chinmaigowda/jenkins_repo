@@ -4,6 +4,7 @@ pipeline {
         booleanParam(name: 'CHECKOUT', defaultValue: true, description: 'Toggle this to checkout')
         booleanParam(name: 'BUILD', defaultValue: true, description: 'Toggle this to checkout')
         booleanParam(name: 'TEST', defaultValue: true, description: 'Toggle this to checkout')
+        booleanParam(name: 'DEPLOY', defaultValue: true, description: 'Toggle this to checkout')
     }
     stages{
         stage('CHECKOUT') {

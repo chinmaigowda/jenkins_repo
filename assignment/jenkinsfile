@@ -32,7 +32,6 @@ pipeline {
                     def buildResult =
                     sh '''
                         sleep 5
-                        exit 1
                     '''
                     currentBuild.result = buildResult ? 'SUCCESS' : 'FAILURE'
                 }

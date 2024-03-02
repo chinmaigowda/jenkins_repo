@@ -28,7 +28,7 @@ pipeline {
                         sh '''
                             #!/bin/bash
                             ls -lrt
-                            sleep 10
+                            sleep 2
                         '''
                     }
                 }
@@ -37,7 +37,7 @@ pipeline {
                         sh '''
                             #!/bin/bash
                             ls -lrt
-                            sleep 10
+                            sleep 2
                         '''
                     }
                 }

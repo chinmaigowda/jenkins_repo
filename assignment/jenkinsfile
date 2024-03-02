@@ -49,6 +49,11 @@ pipeline {
             }
         }
         stage('DEPLOY') {
+            when {
+                expression {
+                    params.ENABLE_DEPLOY
+                }
+            }
             dependsOn 'TEST'
             steps {
                     sh '''

@@ -51,7 +51,7 @@ pipeline {
         stage('DEPLOY') {
             when {
                 expression {
-                    params.ENABLE_DEPLOY
+                    params.DEPLOY
                 }
             }
             dependsOn 'TEST'

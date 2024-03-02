@@ -35,26 +35,37 @@ pipeline {
                 '''
             }
         }
-        stage('TEST') {
-            when {
-                expression {
-                    params.BUILD == true
+        stage('TEST MULTIPLE') {
+            parallel {
+                stage('TEST1') {
+                    when {
+                        expression {
+                            params.BUILD == true
+                        }
+                    }
+                    steps {
+                        sh '''
+                            sleep 2
+                            ls -lrt
+                        '''
+                    }
                 }
-            }
-            steps {
-                sh '''
-                    sleep 5
-                    ls -lrt
-                    exit 0
-                '''
+                stage('TEST2') {
+                    when {
+                        expression {
+                            params.BUILD == false
+                        }
+                    }
+                    steps {
+                        sh '''
+                            ls -lrt
+                            sleep 2
+                        '''
+                    }
+                }
             }
         }
         stage('DEPLOY') {
-            when {
-                expression {
-                    params.BUILD == false
-                }
-            }
             steps {
                     sh '''
                     sleep 5

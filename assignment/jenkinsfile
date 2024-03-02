@@ -24,7 +24,7 @@ pipeline {
         stage('BUILD') {
             when {
                 expression {
-                    params.CHECKOUT == true
+                    params.BUILD == true
                 }
             }
             steps {
@@ -38,7 +38,7 @@ pipeline {
         stage('TEST') {
             when {
                 expression {
-                    params.BUILD == true
+                    params.BUILD == false
                 }
             }
             steps {

@@ -52,7 +52,7 @@ pipeline {
         stage('DEPLOY') {
             when {
                 expression {
-                    params.TEST == true
+                    params.TEST == false
                 }
             }
             steps {

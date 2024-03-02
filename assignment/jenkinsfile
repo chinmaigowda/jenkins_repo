@@ -40,7 +40,7 @@ pipeline {
                 stage('TEST1') {
                     when {
                         expression {
-                            params.BUILD == true
+                            params.BUILD == false
                         }
                     }
                     steps {
@@ -53,7 +53,7 @@ pipeline {
                 stage('TEST2') {
                     when {
                         expression {
-                            params.BUILD == false
+                            params.BUILD == true
                         }
                     }
                     steps {

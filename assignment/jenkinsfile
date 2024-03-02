@@ -54,7 +54,6 @@ pipeline {
                     params.DEPLOY
                 }
             }
-            dependsOn 'TEST'
             steps {
                     sh '''
                     sleep 5

@@ -30,7 +30,7 @@ pipeline {
             }
             steps {
                 sh '''
-                    sleep 4
+                    sleep 6
                     exit 0
                 '''
             }

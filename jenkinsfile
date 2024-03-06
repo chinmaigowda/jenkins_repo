@@ -1,47 +1,12 @@
+@Library('shared') _
+
 pipeline {
     agent any
     stages {
-        stage ('Checkout') {
+        stage ('Build') {
             steps {
-                script {
-                    checkout([$class: 'GitSCM', 
-                    branches: [[name: '*/master']],
-                    userRemoteConfigs: [[url: 'https://github.com/chinmaigowda/mvn1.git',
-                    credentialsId: 'GitHub']]])
-                }
+                welcome('Chinmai Gowda')
             }
         }
-        stage('Build') {
-            steps {
-                sh '''
-                    sudo apt install -y maven
-                    mvn clean install
-                    ls -lrt
-                    sleep 5
-                '''
-            }
-        }
-        stage('TEST MULTIPLE') {
-            parallel {
-                stage('Test 1') {
-                    steps {
-                        sh '''
-                            #!/bin/bash
-                            ls -lrt
-                            sleep 2
-                        '''
-                    }
-                }
-                stage('Test 2') {
-                    steps {
-                        sh '''
-                            #!/bin/bash
-                            ls -lrt
-                            sleep 2
-                        '''
-                    }
-                }
-            }
-        }    
     }
 }

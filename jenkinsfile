@@ -8,6 +8,7 @@ pipeline {
                 script {
                     welcome('Chinmai Gowda')
                     arithmetic.add(10,5)
+                    arithmetic.sub(12,6)
                     arithmetic.mul(5,6)
                 }
             }

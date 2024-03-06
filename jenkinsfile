@@ -5,7 +5,9 @@ pipeline {
     stages {
         stage ('Build') {
             steps {
-                welcome('Chinmai Gowda')
+                script {
+                    welcome('Chinmai Gowda')
+                }
             }
         }
     }
